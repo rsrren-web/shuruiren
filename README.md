@@ -1,8 +1,12 @@
-# A Little Machine for Big Ideas — V18 (current)
+# A Little Machine for Big Ideas — V22
 
-Current authoritative handoff: `A_Little_Machine_Project_Handoff_V18.md`, then V17 + V16 Complete for inherited constraints. The V18 project intro is compact, the PDF pages appear directly after it, and the three project notes move below the PDFs. 30 complete pages remain at 5184×3351 without cropping or stretching.
+**Live website: [rsrren-web.github.io/shuruiren](https://rsrren-web.github.io/shuruiren/)**
 
-**Local review only.** Standalone interactive preview is supplied separately as `A_Little_Machine_Interactive_Preview_v18.html`; production code lives in this folder. Edit `generate_site.py` / `assets/styles.css`, then execute `python3 generate_site.py`. See `QA_V18.md`.
+The current baseline is V22 from `Little_Machine_V22_FULL_SOURCE.zip`. It includes English/Chinese navigation, an interactive creative machine, 11 projects, 30 uncropped full-resolution portfolio pages, and the original five-minute soundtrack.
+
+Run `python scripts/build.py` to regenerate, validate and package the site into `_site/`. Push to `main` to publish automatically through GitHub Actions. See [DEPLOYMENT.md](DEPLOYMENT.md) for maintenance and [QA_DEPLOYMENT.md](QA_DEPLOYMENT.md) for release verification.
+
+The earlier notes below are retained as historical reference; their version and local-review status do not describe this deployment.
 
 ---
 
