@@ -66,4 +66,4 @@ for page in pages:
     shutil.copy2(page, target)
 shutil.copytree(ROOT / 'assets', output / 'assets', dirs_exist_ok=True)
 (output / '.nojekyll').write_text('', encoding='utf-8')
-print(f'Validated {len(pages)} pages, 52 WebP images, 30 full-resolution pages, and {len(manifest)} unchanged V22 assets.')
+print(f'Validated {len(pages)} pages, 52 WebP images, 30 full-resolution pages, and {len(manifest)} assets against the current integrity manifest.')

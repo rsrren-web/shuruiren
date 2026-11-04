@@ -1,5 +1,11 @@
 # GitHub Pages deployment
 
+Current updates: browser tabs use `Shurui‘s Portfolio`. Ordinary internal links
+replace page content while retaining one connected audio player, so background
+music continues through page changes and browser Back/Forward. Direct page URLs
+still work; full reloads, new tabs and a network-failure navigation fallback create
+a new document and may restart audio. Original image and soundtrack files are unchanged.
+
 Website: https://rsrren-web.github.io/shuruiren/
 
 The website uses the original V22 multipage source. Its 15 pages, 52 WebP images,

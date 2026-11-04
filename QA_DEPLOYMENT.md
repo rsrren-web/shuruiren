@@ -1,5 +1,26 @@
 # V22 GitHub Pages release verification
 
+## Continuous music navigation update
+
+Verified on the live deployment of commit `c333297`:
+
+- Playing music advanced from 7.622606s on Home to 8.13818s on Work and
+  8.616571s on SCAVENGER, without pausing or resetting.
+- Browser Back and Forward kept playback advancing (26.250044s to 26.322083s).
+- About → Contact navigation preserved Chinese language and continued at 28.559422s.
+- The DOM contained exactly one audio player after navigation; its absolute audio
+  URL and nested project image URLs resolved correctly.
+- Muting persisted through navigation and category filtering; playback paused at
+  43.892333s and resumed at 44.029614s when re-enabled on Home.
+- Project viewer zoom, map region selection, Play empty state, menu open/Escape and
+  bilingual switching worked after content replacement. No error-level browser logs.
+- JavaScript syntax and the full static build/resource/integrity checks passed.
+
+This confirms browser playback state and continuity. It is not a physical-device
+listening test on every browser. Full reloads/new tabs remain independent documents.
+
+## Original deployment record
+
 Date: 2026-11-04 (UTC)
 
 Live URL: https://rsrren-web.github.io/shuruiren/
