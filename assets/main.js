@@ -2,6 +2,7 @@
  *  V13 case studies derive from the submitted PDF; public release checks remain pending.
  */
 const PERSONALIZE = {
+  siteTitle: 'Shurui‘s Portfolio',
   nameFirst: 'SHURUI', nameSecond: 'REN', fullName: 'SHURUI REN',
   description: 'Designer and illustrator creating thoughtful digital experiences, visual stories, brands, and campaigns.',
   email: 'rsr.ren@gmail.com',
@@ -26,13 +27,7 @@ function applyIdentity() {
 }
 function applyTranslations() {
   document.documentElement.lang = isChinese() ? 'zh-CN' : 'en';
-  const pageName=document.body.dataset.page;
-  if (isChinese()) {
-    const localized={home:'A Little Machine for Big Ideas — Shurui Ren',work:'作品集 — Shurui Ren',about:'关于与个人简历 — Shurui Ren',contact:'联系方式 — Shurui Ren',project:'项目案例 — Shurui Ren'};
-    document.title = localized[pageName] || document.title;
-  } else if (document.body.dataset.englishTitle) {
-    document.title = document.body.dataset.englishTitle;
-  }
+  document.title = PERSONALIZE.siteTitle;
   document.querySelectorAll('[data-i18n-aria-label]').forEach(el=>{
     const key=el.dataset.i18nAriaLabel;
     if (!el.dataset.originalAriaLabel) el.dataset.originalAriaLabel=el.getAttribute('aria-label') || '';
@@ -47,10 +42,6 @@ function applyTranslations() {
     const translated = isChinese() ? (LM_I18N.zh[key] ?? base) : base;
     if (html) el.innerHTML = translated; else el.textContent = translated;
   });
-  if (isChinese() && pageName === 'project') {
-    const title = document.querySelector('.case-title')?.textContent?.trim();
-    if (title) document.title = title + ' — Shurui Ren';
-  }
   const langToggle = document.getElementById('language-toggle');
   if (langToggle) {
     langToggle.setAttribute('aria-label', isChinese() ? 'Switch to English' : '切换为中文');
