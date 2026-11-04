@@ -178,7 +178,7 @@ function setupMachine() {
     ticketText.textContent=isChinese()?localized[ideaIndex]:mode.ideas[ideaIndex];
     ticketMode.textContent=modeLabel(mode);
     ticketCTA.innerHTML = (isChinese() ? '探索' + modeLabel(mode) + '作品' : 'EXPLORE ' + mode.label + ' WORK') + ' <span aria-hidden="true">↗</span>';
-    ticket.href='work.html?category='+mode.id;
+    ticket.href=new URL('../work.html?category='+mode.id, [...document.scripts].find(s=>/\/assets\/main\.js(?:\?|$)/.test(s.src))?.src || location.href).href;
     ticket.setAttribute('aria-label', isChinese() ? '打开' + modeLabel(mode) + '分类的作品页面' : 'Open ' + mode.label + ' projects');
     ticketNum.textContent=String(printed).padStart(3,'0');
   }
@@ -644,6 +644,12 @@ function setupContinuousNavigation() {
       resolved.hash = url.hash;
       const next = new DOMParser().parseFromString(await response.text(), 'text/html');
       if (!next.querySelector('#main-content') || !next.querySelector('meta[name="lm-audio-source"]')) throw new Error('Not a portfolio page');
+      next.body.querySelectorAll('[href], [src], [data-full]').forEach(el => {
+        for (const attr of ['href', 'src', 'data-full']) {
+          const value = el.getAttribute(attr);
+          if (value && !value.startsWith('#')) el.setAttribute(attr, new URL(value, resolved.href).href);
+        }
+      });
       if (request !== sequence) return;
       // Change the URL before importing relative image, link and viewer paths.
       if (!pop) history.pushState({lmScroll:[0,0]}, '', resolved.href);
