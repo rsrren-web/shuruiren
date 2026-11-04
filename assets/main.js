@@ -124,7 +124,7 @@ function setupFilters() {
     reflect();
     if(window.LM_PREVIEW_ROUTE){window.LM_PREVIEW_CATEGORY=selected;window.LM_PREVIEW_ROUTE('work.html',selected,true);}
     else {
-      try {const url=new URL(location.href);if(selected==='all')url.searchParams.delete('category');else url.searchParams.set('category',selected);history.replaceState(null,'',url.href);}catch(_){}
+      try {const url=new URL(location.href);if(selected==='all')url.searchParams.delete('category');else url.searchParams.set('category',selected);history.replaceState(history.state,'',url.href);}catch(_){}
     }
   }));
   const reset=document.querySelector('[data-reset-filter]');
@@ -277,7 +277,9 @@ function setupSoundEffects() {
   let activated = false, playing = false, playPending = false, musicError = '';
   let autoplayBlocked = false, playRequest = 0, effectsPlayed = 0;
   let lastHover = 0, fadeFrame = null, duckTimer = null;
-  const trackUrl = document.querySelector('meta[name="lm-audio-source"]')?.getAttribute('content') || '';
+  const trackSource = document.querySelector('meta[name="lm-audio-source"]')?.getAttribute('content');
+  // Resolve once: the document URL can change while this same player keeps running.
+  const trackUrl = trackSource ? new URL(trackSource, location.href).href : '';
   function reflect() {
     const toggle = document.getElementById('sound-toggle');
     if (toggle) {
@@ -332,6 +334,9 @@ function setupSoundEffects() {
       audio.loop=true;
       audio.src=trackUrl;
       audio.volume=0.04; // Audible nonzero playback: the browser decides whether autoplay is permitted.
+      audio.id='little-machine-background-audio';
+      audio.hidden=true;
+      document.body.append(audio);
       audio.addEventListener('error',()=>{
         musicError='Audio load error ('+(audio?.error?.code||'?')+')';
         playing=false; playPending=false; reflect();
@@ -583,6 +588,109 @@ function setupVisualViewer() {
   },{passive:false});
 }
 
+/** Keep the document and audio engine alive across ordinary portfolio links.
+ * Each HTML page remains a usable direct entry point and a no-JavaScript fallback.
+ */
+function setupContinuousNavigation() {
+  if (window.__LM_navigationBound || window.LM_PREVIEW_ROUTE || !/^https?:$/.test(location.protocol)) return;
+  window.__LM_navigationBound = true;
+  const script = [...document.scripts].find(el => /\/assets\/main\.js(?:\?|$)/.test(el.src));
+  if (!script) return;
+  const siteRoot = new URL('../', script.src);
+  const knownPages = new Set(['', 'index.html', 'work.html', 'about.html', 'contact.html']);
+  // Preserve the loaded shell assets when history changes from a root page to a case.
+  document.querySelectorAll('head [href], head script[src]').forEach(el => {
+    const attr = el.hasAttribute('href') ? 'href' : 'src';
+    el.setAttribute(attr, new URL(el.getAttribute(attr), location.href).href);
+  });
+  let pending = null, sequence = 0;
+  function supported(url) {
+    if (url.origin !== siteRoot.origin || !url.pathname.startsWith(siteRoot.pathname)) return false;
+    const path = url.pathname.slice(siteRoot.pathname.length);
+    return knownPages.has(path) || /^projects\/[a-z0-9-]+\.html$/.test(path);
+  }
+  function rememberScroll() {
+    history.replaceState({...history.state, lmScroll: [scrollX, scrollY]}, '', location.href);
+  }
+  history.scrollRestoration = 'manual';
+  rememberScroll();
+  let scrollFrame = null;
+  window.addEventListener('scroll', () => {
+    if (pending || scrollFrame !== null) return;
+    scrollFrame = requestAnimationFrame(() => {
+      scrollFrame = null;
+      if (!pending) rememberScroll();
+    });
+  }, {passive:true});
+  function placeScroll(url, position) {
+    let anchor = null;
+    try { anchor = url.hash ? document.getElementById(decodeURIComponent(url.hash.slice(1))) : null; } catch (_) {}
+    if (position) window.scrollTo({left:position[0], top:position[1], behavior:'instant'});
+    else if (anchor) anchor.scrollIntoView({behavior:'instant'});
+    else window.scrollTo({top:0, left:0, behavior:'instant'});
+  }
+  async function navigate(url, {pop=false, position=null} = {}) {
+    const request = ++sequence;
+    pending?.abort();
+    const controller = new AbortController();
+    pending = controller;
+    document.querySelector('main')?.setAttribute('aria-busy', 'true');
+    const timeout = setTimeout(() => controller.abort(), 15000);
+    try {
+      const response = await fetch(url.href, {signal:controller.signal});
+      if (!response.ok || !response.headers.get('content-type')?.includes('text/html')) throw new Error('Page unavailable');
+      const resolved = new URL(response.url);
+      if (!supported(resolved)) throw new Error('Unexpected navigation target');
+      resolved.hash = url.hash;
+      const next = new DOMParser().parseFromString(await response.text(), 'text/html');
+      if (!next.querySelector('#main-content') || !next.querySelector('meta[name="lm-audio-source"]')) throw new Error('Not a portfolio page');
+      if (request !== sequence) return;
+      // Change the URL before importing relative image, link and viewer paths.
+      if (!pop) history.pushState({lmScroll:[0,0]}, '', resolved.href);
+      document.title = PERSONALIZE.siteTitle;
+      const description = document.querySelector('meta[name="description"]');
+      if (description) description.content = next.querySelector('meta[name="description"]')?.content || '';
+      for (const attr of [...document.body.attributes]) document.body.removeAttribute(attr.name);
+      for (const attr of [...next.body.attributes]) document.body.setAttribute(attr.name, attr.value);
+      // Never detach the media element: removing a playing <audio> can interrupt it.
+      const player = document.getElementById('little-machine-background-audio');
+      for (const node of [...document.body.childNodes]) {
+        if (node !== player) node.remove();
+      }
+      document.body.append(...[...next.body.childNodes].map(node => document.importNode(node, true)));
+      initLittleMachine(); // Global handlers/audio are guarded; new page elements are rebound.
+      const main = document.getElementById('main-content');
+      main?.setAttribute('tabindex', '-1');
+      main?.focus({preventScroll:true});
+      placeScroll(resolved, position);
+    } catch (_) {
+      if (request === sequence) location.assign(url.href); // Keep links usable after network/parser failures.
+    } finally {
+      clearTimeout(timeout);
+      if (request === sequence) {
+        pending = null;
+        document.querySelector('main')?.removeAttribute('aria-busy');
+      }
+    }
+  }
+  document.addEventListener('click', event => {
+    if (event.defaultPrevented || event.button !== 0 || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+    const link = event.target.closest?.('a[href]');
+    if (!link || link.hasAttribute('download') || (link.target && link.target !== '_self')) return;
+    const url = new URL(link.href, location.href);
+    if (!supported(url)) return;
+    if (url.pathname === location.pathname && url.search === location.search && url.hash) return;
+    event.preventDefault();
+    rememberScroll();
+    navigate(url);
+  });
+  window.addEventListener('popstate', event => {
+    const url = new URL(location.href);
+    if (supported(url)) navigate(url, {pop:true, position:event.state?.lmScroll || null});
+    else location.reload();
+  });
+}
+
 function initLittleMachine() {
   if (!document.body.dataset.englishTitle) document.body.dataset.englishTitle=document.title;
   applyIdentity();
@@ -594,6 +702,7 @@ function initLittleMachine() {
   setupSoundEffects();
   setupVisualViewer();
   applyTranslations();
+  setupContinuousNavigation();
 }
 window.initLittleMachine=initLittleMachine;
 document.addEventListener('DOMContentLoaded',initLittleMachine);
