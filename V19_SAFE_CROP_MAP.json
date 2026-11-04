@@ -1,0 +1,272 @@
+{
+  "audio-comics-page-14.webp": {
+    "x0": 0,
+    "y0": 140,
+    "x1": 4741,
+    "y1": 3323,
+    "sourceWidth": 5184,
+    "sourceHeight": 3351,
+    "method": "focused inline intro frame: skips blank leading page area and small chapter tab; full original in viewer"
+  },
+  "audio-comics-page-15.webp": {
+    "x0": 0,
+    "y0": 0,
+    "x1": 5130,
+    "y1": 3275,
+    "sourceWidth": 5184,
+    "sourceHeight": 3351,
+    "method": "edge-only with safety allowance"
+  },
+  "audio-comics-page-16.webp": {
+    "x0": 0,
+    "y0": 0,
+    "x1": 5016,
+    "y1": 3275,
+    "sourceWidth": 5184,
+    "sourceHeight": 3351,
+    "method": "edge-only with safety allowance"
+  },
+  "audio-comics-page-17.webp": {
+    "x0": 0,
+    "y0": 0,
+    "x1": 5113,
+    "y1": 3145,
+    "sourceWidth": 5184,
+    "sourceHeight": 3351,
+    "method": "edge-only with safety allowance"
+  },
+  "audio-comics-page-18.webp": {
+    "x0": 0,
+    "y0": 0,
+    "x1": 5092,
+    "y1": 3107,
+    "sourceWidth": 5184,
+    "sourceHeight": 3351,
+    "method": "edge-only with safety allowance"
+  },
+  "conflict-resolver-page-5.webp": {
+    "x0": 0,
+    "y0": 832,
+    "x1": 5103,
+    "y1": 2814,
+    "sourceWidth": 5184,
+    "sourceHeight": 3351,
+    "method": "focused inline intro frame: skips blank leading page area and small chapter tab; full original in viewer"
+  },
+  "conflict-resolver-page-6.webp": {
+    "x0": 0,
+    "y0": 0,
+    "x1": 4962,
+    "y1": 3345,
+    "sourceWidth": 5184,
+    "sourceHeight": 3351,
+    "method": "edge-only with safety allowance"
+  },
+  "conflict-resolver-page-7.webp": {
+    "x0": 0,
+    "y0": 0,
+    "x1": 4962,
+    "y1": 3345,
+    "sourceWidth": 5184,
+    "sourceHeight": 3351,
+    "method": "edge-only with safety allowance"
+  },
+  "conflict-resolver-page-8.webp": {
+    "x0": 0,
+    "y0": 0,
+    "x1": 4708,
+    "y1": 3280,
+    "sourceWidth": 5184,
+    "sourceHeight": 3351,
+    "method": "edge-only with safety allowance"
+  },
+  "contact-lens-guide-page-32.webp": {
+    "x0": 0,
+    "y0": 340,
+    "x1": 4962,
+    "y1": 3091,
+    "sourceWidth": 5184,
+    "sourceHeight": 3351,
+    "method": "focused inline intro frame: skips blank leading page area and small chapter tab; full original in viewer"
+  },
+  "forest-friends-page-31.webp": {
+    "x0": 0,
+    "y0": 102,
+    "x1": 5005,
+    "y1": 3313,
+    "sourceWidth": 5184,
+    "sourceHeight": 3351,
+    "method": "focused inline intro frame: skips blank leading page area and small chapter tab; full original in viewer"
+  },
+  "glasessen-page-26.webp": {
+    "x0": 0,
+    "y0": 297,
+    "x1": 4951,
+    "y1": 3134,
+    "sourceWidth": 5184,
+    "sourceHeight": 3351,
+    "method": "focused inline intro frame: skips blank leading page area and small chapter tab; full original in viewer"
+  },
+  "glasessen-page-27.webp": {
+    "x0": 0,
+    "y0": 0,
+    "x1": 5038,
+    "y1": 3048,
+    "sourceWidth": 5184,
+    "sourceHeight": 3351,
+    "method": "edge-only with safety allowance"
+  },
+  "glasessen-page-28.webp": {
+    "x0": 0,
+    "y0": 0,
+    "x1": 5054,
+    "y1": 2983,
+    "sourceWidth": 5184,
+    "sourceHeight": 3351,
+    "method": "edge-only with safety allowance"
+  },
+  "glasessen-page-29.webp": {
+    "x0": 0,
+    "y0": 0,
+    "x1": 4941,
+    "y1": 3199,
+    "sourceWidth": 5184,
+    "sourceHeight": 3351,
+    "method": "edge-only with safety allowance"
+  },
+  "instagram-design-page-34.webp": {
+    "x0": 0,
+    "y0": 86,
+    "x1": 5130,
+    "y1": 3351,
+    "sourceWidth": 5184,
+    "sourceHeight": 3351,
+    "method": "focused inline intro frame: skips blank leading page area and small chapter tab; full original in viewer"
+  },
+  "scavenger-page-10.webp": {
+    "x0": 0,
+    "y0": 0,
+    "x1": 5000,
+    "y1": 3253,
+    "sourceWidth": 5184,
+    "sourceHeight": 3351,
+    "method": "edge-only with safety allowance"
+  },
+  "scavenger-page-11.webp": {
+    "x0": 0,
+    "y0": 0,
+    "x1": 5027,
+    "y1": 3259,
+    "sourceWidth": 5184,
+    "sourceHeight": 3351,
+    "method": "edge-only with safety allowance"
+  },
+  "scavenger-page-12.webp": {
+    "x0": 0,
+    "y0": 0,
+    "x1": 5124,
+    "y1": 3080,
+    "sourceWidth": 5184,
+    "sourceHeight": 3351,
+    "method": "edge-only with safety allowance"
+  },
+  "scavenger-page-13.webp": {
+    "x0": 0,
+    "y0": 0,
+    "x1": 5000,
+    "y1": 3059,
+    "sourceWidth": 5184,
+    "sourceHeight": 3351,
+    "method": "edge-only with safety allowance"
+  },
+  "scavenger-page-9.webp": {
+    "x0": 0,
+    "y0": 194,
+    "x1": 5043,
+    "y1": 3232,
+    "sourceWidth": 5184,
+    "sourceHeight": 3351,
+    "method": "focused inline intro frame: skips blank leading page area and small chapter tab; full original in viewer"
+  },
+  "tiktok-pets-page-35.webp": {
+    "x0": 0,
+    "y0": 172,
+    "x1": 4644,
+    "y1": 3269,
+    "sourceWidth": 5184,
+    "sourceHeight": 3351,
+    "method": "focused inline intro frame: skips blank leading page area and small chapter tab; full original in viewer"
+  },
+  "whales-today-page-19.webp": {
+    "x0": 0,
+    "y0": 1135,
+    "x1": 5184,
+    "y1": 3351,
+    "sourceWidth": 5184,
+    "sourceHeight": 3351,
+    "method": "focused inline intro frame: skips blank leading page area and small chapter tab; full original in viewer"
+  },
+  "whales-today-page-20.webp": {
+    "x0": 0,
+    "y0": 0,
+    "x1": 5184,
+    "y1": 3351,
+    "sourceWidth": 5184,
+    "sourceHeight": 3351,
+    "method": "edge-only with safety allowance"
+  },
+  "whales-today-page-21.webp": {
+    "x0": 0,
+    "y0": 0,
+    "x1": 5184,
+    "y1": 3351,
+    "sourceWidth": 5184,
+    "sourceHeight": 3351,
+    "method": "edge-only with safety allowance"
+  },
+  "whales-today-page-22.webp": {
+    "x0": 0,
+    "y0": 0,
+    "x1": 5184,
+    "y1": 3351,
+    "sourceWidth": 5184,
+    "sourceHeight": 3351,
+    "method": "edge-only with safety allowance"
+  },
+  "whales-today-page-23.webp": {
+    "x0": 0,
+    "y0": 0,
+    "x1": 4692,
+    "y1": 3280,
+    "sourceWidth": 5184,
+    "sourceHeight": 3351,
+    "method": "edge-only with safety allowance"
+  },
+  "whales-today-page-24.webp": {
+    "x0": 0,
+    "y0": 0,
+    "x1": 5184,
+    "y1": 3351,
+    "sourceWidth": 5184,
+    "sourceHeight": 3351,
+    "method": "edge-only with safety allowance"
+  },
+  "xiaohongshu-agency-page-36.webp": {
+    "x0": 0,
+    "y0": 151,
+    "x1": 5108,
+    "y1": 3307,
+    "sourceWidth": 5184,
+    "sourceHeight": 3351,
+    "method": "focused inline intro frame: skips blank leading page area and small chapter tab; full original in viewer"
+  },
+  "yellow-cover-page-30.webp": {
+    "x0": 0,
+    "y0": 313,
+    "x1": 5065,
+    "y1": 3172,
+    "sourceWidth": 5184,
+    "sourceHeight": 3351,
+    "method": "focused inline intro frame: skips blank leading page area and small chapter tab; full original in viewer"
+  }
+}

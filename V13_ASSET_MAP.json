@@ -1,0 +1,297 @@
+{
+  "conflict-resolver": {
+    "title": "Chat IT Out / Conflict Resolver",
+    "category": "design",
+    "source_pages": "5, 6, 7, 8",
+    "story_visuals": [
+      {
+        "page": 8,
+        "file": "assets/portfolio/conflict-resolver-visual-01.webp",
+        "en": "Conversation screens and flow states",
+        "zh": "对话界面与交互状态"
+      },
+      {
+        "page": 7,
+        "file": "assets/portfolio/conflict-resolver-visual-02.webp",
+        "en": "Information architecture and user journey diagrams",
+        "zh": "信息架构与用户旅程图"
+      },
+      {
+        "page": 6,
+        "file": "assets/portfolio/conflict-resolver-visual-03.webp",
+        "en": "Research and technical architecture material",
+        "zh": "研究与技术架构资料"
+      }
+    ],
+    "original_pdf_pages": [
+      5,
+      6,
+      7,
+      8
+    ]
+  },
+  "scavenger": {
+    "title": "SCAVENGER",
+    "category": "game",
+    "source_pages": "9, 10, 11, 12, 13",
+    "story_visuals": [
+      {
+        "page": 13,
+        "file": "assets/portfolio/scavenger-visual-01.webp",
+        "en": "Illustrated AR game presentation",
+        "zh": "AR 游戏插画与整体展示"
+      },
+      {
+        "page": 10,
+        "file": "assets/portfolio/scavenger-visual-02.webp",
+        "en": "Mobile interface sequence",
+        "zh": "移动端界面流程"
+      },
+      {
+        "page": 12,
+        "file": "assets/portfolio/scavenger-visual-03.webp",
+        "en": "Characters, objects and process boards",
+        "zh": "角色、道具与创作过程"
+      }
+    ],
+    "original_pdf_pages": [
+      9,
+      10,
+      11,
+      12,
+      13
+    ]
+  },
+  "audio-comics": {
+    "title": "Immersive Audio Comics",
+    "category": "design",
+    "source_pages": "14, 15, 16, 17",
+    "story_visuals": [
+      {
+        "page": 14,
+        "file": "assets/portfolio/audio-comics-visual-01.webp",
+        "en": "Illustrated webcomic discovery interface",
+        "zh": "有声漫画发现页界面"
+      },
+      {
+        "page": 15,
+        "file": "assets/portfolio/audio-comics-visual-02.webp",
+        "en": "Website and reading screen concepts",
+        "zh": "网站与阅读界面概念"
+      },
+      {
+        "page": 18,
+        "file": "assets/portfolio/audio-comics-visual-03.webp",
+        "en": "Final visual mockup shown in the portfolio",
+        "zh": "作品集中的最终视觉样机"
+      }
+    ],
+    "original_pdf_pages": [
+      14,
+      15,
+      16,
+      17
+    ]
+  },
+  "whales-today": {
+    "title": "Whales Today",
+    "category": "design",
+    "source_pages": "19, 20, 21, 22, 23",
+    "story_visuals": [
+      {
+        "page": 20,
+        "file": "assets/portfolio/whales-today-visual-01.webp",
+        "en": "Mobile app concept and whale imagery",
+        "zh": "移动应用原型与鲸鱼视觉"
+      },
+      {
+        "page": 21,
+        "file": "assets/portfolio/whales-today-visual-02.webp",
+        "en": "Selected product screens",
+        "zh": "应用界面展示"
+      },
+      {
+        "page": 22,
+        "file": "assets/portfolio/whales-today-visual-03.webp",
+        "en": "Ring design and physical-object studies",
+        "zh": "戒指设计与实体物件探索"
+      },
+      {
+        "page": 23,
+        "file": "assets/portfolio/whales-today-visual-04.webp",
+        "en": "Merchandise and print applications",
+        "zh": "周边与印刷应用"
+      }
+    ],
+    "original_pdf_pages": [
+      19,
+      20,
+      21,
+      22,
+      23
+    ]
+  },
+  "glasessen": {
+    "title": "Glasessen",
+    "category": "design",
+    "source_pages": "26, 27, 28, 29",
+    "story_visuals": [
+      {
+        "page": 27,
+        "file": "assets/portfolio/glasessen-visual-01.webp",
+        "en": "Visual research, logotype and mark system",
+        "zh": "视觉研究、字标与图形系统"
+      },
+      {
+        "page": 28,
+        "file": "assets/portfolio/glasessen-visual-02.webp",
+        "en": "Printed brand collateral",
+        "zh": "品牌印刷物料"
+      },
+      {
+        "page": 29,
+        "file": "assets/portfolio/glasessen-visual-03.webp",
+        "en": "Identity in context and mockups",
+        "zh": "品牌应用场景与样机"
+      }
+    ],
+    "original_pdf_pages": [
+      26,
+      27,
+      28,
+      29
+    ]
+  },
+  "forest-friends": {
+    "title": "The Forest Friends Adventure",
+    "category": "art",
+    "source_pages": "31",
+    "story_visuals": [
+      {
+        "page": 31,
+        "file": "assets/portfolio/forest-friends-visual-01.webp",
+        "en": "Illustrated storybook mockup",
+        "zh": "童书插画与实体书样机"
+      },
+      {
+        "page": 31,
+        "file": "assets/portfolio/forest-friends-visual-02.webp",
+        "en": "Illustrated forest story scene",
+        "zh": "森林故事插画场景"
+      }
+    ],
+    "original_pdf_pages": [
+      31
+    ]
+  },
+  "contact-lens-guide": {
+    "title": "Contact Lens Instruction Guide",
+    "category": "art",
+    "source_pages": "32",
+    "story_visuals": [
+      {
+        "page": 32,
+        "file": "assets/portfolio/contact-lens-guide-visual-01.webp",
+        "en": "Instruction booklet illustration",
+        "zh": "说明手册插画"
+      },
+      {
+        "page": 32,
+        "file": "assets/portfolio/contact-lens-guide-visual-02.webp",
+        "en": "Folded instruction card mockup",
+        "zh": "折页说明卡展示"
+      }
+    ],
+    "original_pdf_pages": [
+      32
+    ]
+  },
+  "yellow-cover": {
+    "title": "Yellow / Album Cover Study",
+    "category": "art",
+    "source_pages": "30",
+    "story_visuals": [
+      {
+        "page": 30,
+        "file": "assets/portfolio/yellow-cover-visual-01.webp",
+        "en": "Main Yellow illustration study",
+        "zh": "Yellow 主视觉插画"
+      },
+      {
+        "page": 30,
+        "file": "assets/portfolio/yellow-cover-visual-02.webp",
+        "en": "Exploration in cover applications",
+        "zh": "封面应用探索"
+      }
+    ],
+    "original_pdf_pages": [
+      30
+    ]
+  },
+  "instagram-design": {
+    "title": "Instagram / Design Agency",
+    "category": "campaigns",
+    "source_pages": "34",
+    "story_visuals": [
+      {
+        "page": 34,
+        "file": "assets/portfolio/instagram-design-visual-01.webp",
+        "en": "Instagram account and content examples",
+        "zh": "Instagram 账号与内容示例"
+      },
+      {
+        "page": 34,
+        "file": "assets/portfolio/instagram-design-visual-02.webp",
+        "en": "Content feed and publishing presentation",
+        "zh": "内容发布与视觉信息展示"
+      }
+    ],
+    "original_pdf_pages": [
+      34
+    ]
+  },
+  "tiktok-pets": {
+    "title": "TikTok / Pet Supplies",
+    "category": "campaigns",
+    "source_pages": "35",
+    "story_visuals": [
+      {
+        "page": 35,
+        "file": "assets/portfolio/tiktok-pets-visual-01.webp",
+        "en": "Short-form video profile and content",
+        "zh": "短视频账号与内容展示"
+      },
+      {
+        "page": 35,
+        "file": "assets/portfolio/tiktok-pets-visual-02.webp",
+        "en": "Selected video and account screenshots",
+        "zh": "视频与账号截图"
+      }
+    ],
+    "original_pdf_pages": [
+      35
+    ]
+  },
+  "xiaohongshu-agency": {
+    "title": "Xiaohongshu / Design Agency",
+    "category": "campaigns",
+    "source_pages": "36",
+    "story_visuals": [
+      {
+        "page": 36,
+        "file": "assets/portfolio/xiaohongshu-agency-visual-01.webp",
+        "en": "Xiaohongshu account and content example",
+        "zh": "小红书账号与内容示例"
+      },
+      {
+        "page": 36,
+        "file": "assets/portfolio/xiaohongshu-agency-visual-02.webp",
+        "en": "Visual social platform screenshots",
+        "zh": "视觉社交平台截图"
+      }
+    ],
+    "original_pdf_pages": [
+      36
+    ]
+  }
+}

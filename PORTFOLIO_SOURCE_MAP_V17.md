@@ -1,0 +1,3 @@
+# V17 — high-resolution complete PDF page presentation
+
+Retains exactly the V14 project-to-source mapping and order: 11 projects and 30 source pages. All complete pages re-rendered from original single-page PDFs at 3× (5184 × 3351) as WebP quality 92. Source PDF embedded bitmap images cannot exceed their native detail; vector typography and shapes benefit most. Source mapping: `V17_PDF_ASSET_MAP.json`. Case-detail images now display up to 1560px wide on large desktops; no crop, no shadow, responsive smaller screens. Review build only: permissions, role/year accuracy, contact details still require confirmation.
