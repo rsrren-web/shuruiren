@@ -19,7 +19,7 @@ def tx(key, default, html=False):
 def base_open(page, title, inner=False, desc='Independent creative portfolio by Shurui Ren.'):
     pre='../' if inner else ''
     active='project' if inner else page
-    return f'''<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#F7F8F5"><meta name="description" content="{escape(desc)}"><meta name="lm-audio-source" content="{pre}assets/audio/little-machine-lofi-original-tone-5min.mp3"><title>Shurui‘s Portfolio</title><link rel="icon" href="{pre}assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="{pre}assets/styles.css"><script src="{pre}assets/i18n.js" defer></script><script src="{pre}assets/main.js?v=paths2" defer></script></head><body id="top" class="page-{page}{' case-page' if inner else ''}" data-page="{page}"><a class="skip" href="#main-content" data-i18n="skip">Skip to content</a>{header(pre,active)}<main id="main-content">'''
+    return f'''<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#F7F8F5"><meta name="description" content="{escape(desc)}"><meta name="lm-audio-source" content="{pre}assets/audio/little-machine-lofi-original-tone-5min.mp3"><title>Shurui‘s Portfolio</title><link rel="icon" href="{pre}assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="{pre}assets/styles.css?v=play1"><script src="{pre}assets/i18n.js?v=play1" defer></script><script src="{pre}assets/main.js?v=paths2" defer></script></head><body id="top" class="page-{page}{' case-page' if inner else ''}" data-page="{page}"><a class="skip" href="#main-content" data-i18n="skip">Skip to content</a>{header(pre,active)}<main id="main-content">'''
 
 def header(pre, active):
     links=[('home','index.html','01','Home'),('work','work.html','02','Work'),('about','about.html','03','About'),('contact','contact.html','04','Contact')]
@@ -46,7 +46,11 @@ def project_card(p, inner=False, pdf_first=False):
     cat=CATEGORY.get(p['category'],'play')
     slug=p['slug']
     image = (f'<div class="project-art pdf-first-art"><img src="{pre}{escape(p["pdf_thumb"],quote=True)}" alt="{escape(p["title"]+" — complete first source PDF page",quote=True)}" loading="lazy" decoding="async" width="1728" height="1117"><span class="pdf-first-corner mono">01 / PDF</span></div>' if pdf_first else art_markup(p))
-    return f'''<article class="project" data-category="{cat}"><a class="project-link" href="{pre}projects/{slug}.html" aria-label="View {escape(p['title'])} project" data-i18n-aria-label="project_{slug}_card_aria">{image}<div class="project-meta"><span class="mono">{p['number']} / <span data-i18n="project_{slug}_type">{escape(p['type'])}</span></span><small class="mono" data-i18n="portfolio_label">PORTFOLIO / DRAFT</small></div><h3 class="project-title"><span data-i18n="project_{slug}_display_title">{escape(p['title'])}</span><span class="arrow" aria-hidden="true">↗</span></h3><p class="project-description" data-i18n="project_{slug}_tagline">{escape(p['tagline'])}</p></a></article>'''
+    label_key, label = 'portfolio_label', 'PORTFOLIO / DRAFT'
+    if p.get('live_url'):
+        image = f'<div class="project-art play-preview"><img src="{pre}{p["cover"]}" alt="{escape(p["title"],quote=True)} — actual website screenshot" loading="lazy" decoding="async"><span class="pdf-first-corner mono">LIVE / WEB</span></div>'
+        label_key, label = 'play_label', 'LIVE / WEB PROJECT'
+    return f'''<article class="project" data-category="{cat}"><a class="project-link" href="{pre}projects/{slug}.html" aria-label="View {escape(p['title'])} project" data-i18n-aria-label="project_{slug}_card_aria">{image}<div class="project-meta"><span class="mono">{p['number']} / <span data-i18n="project_{slug}_type">{escape(p['type'])}</span></span><small class="mono" data-i18n="{label_key}">{label}</small></div><h3 class="project-title"><span data-i18n="project_{slug}_display_title">{escape(p['title'])}</span><span class="arrow" aria-hidden="true">↗</span></h3><p class="project-description" data-i18n="project_{slug}_tagline">{escape(p['tagline'])}</p></a></article>'''
 
 def mini_section(tag, label, title, p, url, link_key, link_label):
     return f'''<a class="home-editorial-link" href="{url}"><span class="mono">{tag} / <span data-i18n="{label[0]}">{label[1]}</span></span><strong {tx(title[0],title[1],True)}>{title[1]}</strong><span class="mono discover-arrow" data-i18n="{link_key}">{link_label} ↗</span></a>'''
@@ -62,9 +66,9 @@ def home():
 
 def work():
     s=base_open('work','Work — A Little Machine')
-    s+='''<section class="work-section standalone-work"><div class="page-wrap"><div class="section-topline"><div class="section-index"><span class="index-square">02</span><span class="mono" data-i18n="work_kicker">THE PORTFOLIO / FIVE DISCIPLINES</span></div><span class="mono" data-i18n="demo_warning">REAL PROJECTS / EDITORIAL REVIEW</span></div><div class="work-intro"><h1 data-i18n-html="work_heading">Things made<br>along <span class="blue">the way.</span></h1><div class="work-summary"><span class="mono" data-i18n="discipline_summary">DESIGN / ART / GAME / CAMPAIGNS / PLAY</span><p data-i18n="work_description">Browse by discipline. Projects are drawn from the submitted portfolio. Dates, public permissions and external claims still require confirmation.</p></div></div><div class="filters" role="group" aria-label="Filter projects by discipline" data-i18n-aria-label="a11y_filters">'''
+    s+='''<section class="work-section standalone-work"><div class="page-wrap"><div class="section-topline"><div class="section-index"><span class="index-square">02</span><span class="mono" data-i18n="work_kicker">THE PORTFOLIO / FIVE DISCIPLINES</span></div><span class="mono" data-i18n="demo_warning">REAL PROJECTS / EDITORIAL REVIEW</span></div><div class="work-intro"><h1 data-i18n-html="work_heading">Things made<br>along <span class="blue">the way.</span></h1><div class="work-summary"><span class="mono" data-i18n="discipline_summary">DESIGN / ART / GAME / CAMPAIGNS / PLAY</span><p data-i18n="work_description">Browse by discipline: portfolio case studies alongside live Vibe Coding projects.</p></div></div><div class="filters" role="group" aria-label="Filter projects by discipline" data-i18n-aria-label="a11y_filters">'''
     s+=''.join(f'<button class="filter" type="button" data-filter="{cat}" aria-pressed="{str(i==0).lower()}" data-i18n="filter_{cat}">{label}</button>' for i,(cat,label) in enumerate([('all','All work'),('design','Design'),('art','Art'),('game','Game'),('campaigns','Campaigns'),('play','Play')]))
-    s+='''<span class="filter-count mono" id="filter-count" aria-live="polite">SHOWING 11 / 11</span></div><div class="work-grid" id="project-grid">'''+''.join(project_card(p,pdf_first=True) for p in PROJECTS)+'''</div><div class="filter-empty" id="filter-empty" hidden><span class="empty-star" aria-hidden="true">✳</span><h2 data-i18n="empty_heading">This channel is warming up.</h2><p data-i18n="empty_body">No project in this category has been documented in the supplied portfolio yet.</p><button type="button" class="empty-reset" data-reset-filter data-i18n="empty_reset">VIEW ALL WORK ↗</button></div><div class="work-bottom-note mono" data-i18n="work_bottom_note">PORTFOLIO-SOURCED DRAFT / DATES, PUBLIC PERMISSIONS AND REPORTED RESULTS PENDING REVIEW.</div></div></section>'''
+    s+='''<span class="filter-count mono" id="filter-count" aria-live="polite">SHOWING 13 / 13</span></div><div class="work-grid" id="project-grid">'''+''.join(project_card(p,pdf_first=True) for p in PROJECTS)+'''</div><div class="filter-empty" id="filter-empty" hidden><span class="empty-star" aria-hidden="true">✳</span><h2 data-i18n="empty_heading">This channel is warming up.</h2><p data-i18n="empty_body">No project in this category has been documented in the supplied portfolio yet.</p><button type="button" class="empty-reset" data-reset-filter data-i18n="empty_reset">VIEW ALL WORK ↗</button></div><div class="work-bottom-note mono" data-i18n="work_bottom_note">PORTFOLIO CASE STUDIES & LIVE WEB PROJECTS / SOURCES AND LINKS IN EACH PROJECT.</div></div></section>'''
     return s+finish()
 
 def about():
@@ -167,7 +171,7 @@ def recommendation_cards(p):
     rows=[]
     for item in chosen:
         slug=item['slug']
-        rows.append(f'''<a class="v15-recommend-card" href="{escape(slug)}.html" aria-label="Explore {escape(item['title'],quote=True)}"><div class="v15-recommend-thumb"><img src="../{escape(item['pdf_thumb'],quote=True)}" loading="lazy" decoding="async" width="1728" height="1117" alt="{escape(item['title'],quote=True)} — first complete PDF page"></div><div class="v15-recommend-copy"><span class="mono">{escape(item['number'])} / <span data-i18n="filter_{item['category']}">{escape(item['category']).upper()}</span></span><strong data-i18n="project_{slug}_display_title">{escape(item['title'])}</strong><span class="v15-recommend-action" data-i18n="v15_view_project">VIEW PROJECT ↗</span></div></a>''')
+        rows.append(f'''<a class="v15-recommend-card" href="{escape(slug)}.html" aria-label="Explore {escape(item['title'],quote=True)}"><div class="v15-recommend-thumb"><img src="../{escape(item['pdf_thumb'],quote=True)}" loading="lazy" decoding="async" width="1728" height="1117" alt="{escape(item['title'],quote=True)} — project preview"></div><div class="v15-recommend-copy"><span class="mono">{escape(item['number'])} / <span data-i18n="filter_{item['category']}">{escape(item['category']).upper()}</span></span><strong data-i18n="project_{slug}_display_title">{escape(item['title'])}</strong><span class="v15-recommend-action" data-i18n="v15_view_project">VIEW PROJECT ↗</span></div></a>''')
     return f'''<section class="v15-more-projects"><div class="v15-more-heading"><div><span class="mono" data-i18n="v15_explore_kicker">STAY CURIOUS / MORE WORK</span><h2 data-i18n="v15_explore_heading">Keep exploring.</h2></div><a href="../work.html" data-i18n="v15_view_all">VIEW ALL PROJECTS ↗</a></div><div class="v15-recommend-grid">{''.join(rows)}</div></section>'''
 
 def tools_markup(p):
@@ -177,6 +181,8 @@ def tools_markup(p):
     return escape(original)
 
 def detail(p,nxt):
+    if p.get('live_url'):
+        return play_detail(p)
     slug=p['slug']; prefix='project_'+slug+'_'; idx=p['number']
     s=base_open('project',p['title'],True,p['tagline'])
     s+=f'''<div class="page-wrap v14-case v15-case v17-case-wrap v18-case-wrap v19-case-wrap"><div class="case-top"><a class="back-link" href="../work.html"><span aria-hidden="true">←</span> <span data-i18n="all_work">ALL WORK</span></a><span class="mono"><span data-i18n="case_project">PROJECT</span> {idx} / {len(PROJECTS):02d} &nbsp; ✳ &nbsp; <span data-i18n="portfolio_label">PORTFOLIO / DRAFT</span></span></div>
@@ -185,6 +191,22 @@ def detail(p,nxt):
     <section class="v15-project-notes" aria-label="Project context and documented work"><div class="v15-notes-intro"><span class="mono" data-i18n="v15_project_notes">PROJECT NOTES / FROM THE PORTFOLIO</span><h2 data-i18n="v15_project_context">A closer look.</h2></div><div class="v15-notes-grid"><article><span class="mono">01 / <span data-i18n="v15_question">THE QUESTION</span></span><p data-i18n="{prefix}lead">{escape(p['lead'])}</p></article><article><span class="mono">02 / <span data-i18n="v15_approach">THE APPROACH</span></span><p data-i18n="{prefix}approach">{escape(p['approach'])}</p></article><article><span class="mono">03 / <span data-i18n="v15_documented">WHAT'S DOCUMENTED</span></span><p data-i18n="{prefix}outcome">{escape(p['outcome'])}</p></article></div></section>
     {recommendation_cards(p)}
     <p class="case-warning"><span data-i18n="case_warning">PORTFOLIO-SOURCED REVIEW DRAFT: project dates, permissions and external claims require verification before publication.</span> <span class="mono"><span data-i18n="case_source_pages">SOURCE PDF PAGES</span>: {escape(p['source_pages'])}</span></p></div>'''
+    return s+finish(True)
+
+def play_detail(p):
+    prefix='project_'+p['slug']+'_'
+    def copy(key):
+        return f'<span data-i18n="{prefix}{key}">{escape(p[key])}</span>'
+    s=base_open('project',p['title'],True,p['tagline'])
+    s+=f'''<div class="page-wrap v19-case-wrap play-case"><div class="case-top"><a class="back-link" href="../work.html?category=play">← <span data-i18n="play_back">BACK TO PLAY</span></a><span class="mono">PROJECT {p['number']} / {len(PROJECTS):02d} · PLAY</span></div>
+    <section class="v19-case-lead"><div class="v19-case-intro"><div class="v18-case-hero"><span class="case-label mono" data-i18n="play_origin">REAL WEBSITE / VIBE CODING</span><h1 class="case-title" data-i18n="{prefix}display_title">{escape(p['title'])}</h1><p class="v17-case-tagline">{copy('tagline')}</p></div><div class="v18-case-summary"><span class="mono" data-i18n="v16_project_overview">PROJECT OVERVIEW</span><p>{copy('story')}</p></div></div>
+    <dl class="v17-case-facts"><div><dt data-i18n="case_discipline">DISCIPLINE</dt><dd>PLAY / VIBE CODING</dd></div><div><dt data-i18n="case_role">MY ROLE</dt><dd>Vibe coding</dd></div><div><dt data-i18n="play_stack">TECH STACK</dt><dd>{escape(p['tools'])}</dd></div><div><dt data-i18n="play_label">LIVE / WEB PROJECT</dt><dd>GitHub Pages</dd></div></dl>
+    <div class="play-actions"><a class="text-arrow-link" href="{p['live_url']}" target="_blank" rel="noopener noreferrer" data-i18n="play_live">OPEN LIVE PROJECT ↗</a><a class="text-arrow-link" href="{p['repo_url']}" target="_blank" rel="noopener noreferrer" data-i18n="play_source">VIEW GITHUB SOURCE ↗</a></div></section>
+    <section class="play-capture"><h2 data-i18n="play_screenshot">The real interface.</h2><figure><a href="../{p['cover']}" target="_blank" rel="noopener"><img src="../{p['cover']}" alt="{escape(p['title'],quote=True)} — actual website screenshot" decoding="async"></a><figcaption>{copy('caption')}</figcaption></figure></section>
+    <section class="v15-project-notes"><div class="v15-notes-intro"><span class="mono" data-i18n="play_notes">PROJECT NOTES / LIVE SITE & SOURCE</span><h2 data-i18n="v15_project_context">A closer look.</h2></div><div class="v15-notes-grid">'''
+    for i,(key,label_key,label) in enumerate([('lead','v15_question','THE QUESTION'),('approach','v15_approach','THE APPROACH'),('outcome','v15_documented',"WHAT'S DOCUMENTED")],1):
+        s+=f'<article><span class="mono">0{i} / <span data-i18n="{label_key}">{label}</span></span><p>{copy(key)}</p></article>'
+    s+='</div></section>'+recommendation_cards(p)+'<p class="case-warning" data-i18n="play_evidence">Based on the live websites and public repositories. Screenshots captured on 2026-11-06.</p></div>'
     return s+finish(True)
 
 def gallery_markup(p):

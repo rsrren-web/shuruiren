@@ -145,6 +145,9 @@ ICONS = {
 for _project in PROJECTS:
     _project['pdf_thumb'] = f"assets/portfolio/{_project['slug']}-pdf-first.webp"
 
+from play_projects import PLAY_PROJECTS
+PROJECTS.extend(PLAY_PROJECTS)
+
 def art_markup(project, detail=False):
     """Real cover imagery extracted from supplied PDF, separate from the retained machine icon system."""
     pre='../' if detail else ''

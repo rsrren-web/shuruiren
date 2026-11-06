@@ -1942,3 +1942,14 @@ html[lang^="zh"] .audio-panel-switch, html[lang^="zh"] .audio-panel-description,
 @media(max-width:850px){.sound-settings-toggle {width:34px;height:37px;}}
 @media(max-width:600px){.sound-settings-toggle{width:32px;height:35px;}.header-tools{gap:5px;}.audio-settings{top:calc(100% + 13px);right:0;padding:18px 17px;}}
 @media(prefers-reduced-motion:reduce){.sound-settings-toggle{transition:none;}}
+
+/* Live Play projects: retain real screenshot proportions without cropping. */
+.play-preview{background:#e8ebea;aspect-ratio:1728/1117;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;}
+.play-preview img{width:100%;height:100%;object-fit:contain;}
+.play-actions{display:flex;flex-wrap:wrap;gap:24px;margin:28px 0 48px;}
+.play-capture{margin:48px 0;}
+.play-capture h2{font-size:clamp(28px,4vw,48px);margin-bottom:24px;}
+.play-capture figure{margin:0;background:#e8ebea;padding:24px;text-align:center;}
+.play-capture img{display:block;width:auto;max-width:100%;max-height:820px;height:auto;margin:auto;}
+.play-capture figcaption{font-size:14px;line-height:1.6;margin-top:20px;}
+@media(max-width:600px){.play-capture figure{padding:12px;}.play-actions{gap:18px;}.play-case .case-top{flex-wrap:wrap;gap:16px;}}

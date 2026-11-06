@@ -312,3 +312,6 @@ IDEAS_ZH={
 'play':['如果网站像小玩具一样运作呢？','想象一台能把问题变成形状的机器。','把两个不相关的想法交个朋友。','只因为好奇，就做个有趣的小东西。']
 }
 SCREEN_ZH={'design':'设计模式','art':'艺术模式','game':'游戏模式','campaigns':'品牌传播模式','play':'趣味创作模式'}
+
+from play_projects import PLAY_ZH
+ZH.update(PLAY_ZH)

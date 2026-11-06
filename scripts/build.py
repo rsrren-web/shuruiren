@@ -13,7 +13,8 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 runpy.run_path(str(ROOT / 'generate_site.py'), run_name='__main__')
 pages = sorted(ROOT.glob('*.html')) + sorted((ROOT / 'projects').glob('*.html'))
-assert len(pages) == 15, f'Expected 15 pages, got {len(pages)}'
+from portfolio_data import PROJECTS
+assert len(pages) == len(PROJECTS)+4, f'Expected {len(PROJECTS)+4} pages, got {len(pages)}'
 assert len(list((ROOT / 'assets/portfolio').glob('*-page-*.webp'))) == 30
 assert len(list((ROOT / 'assets/portfolio').glob('*.webp'))) == 52
 
