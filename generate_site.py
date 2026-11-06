@@ -8,6 +8,7 @@ from html import escape
 import json
 from portfolio_data import PROJECTS, ICONS, art_markup, VISUAL_STORIES, PROJECT_TOOLS
 from translations import ZH, IDEAS_ZH, SCREEN_ZH
+from play_editorial import cover as editorial_cover, render as editorial_render
 
 ROOT=Path(__file__).parent
 MODES=[('design','DESIGN','DESIGN'),('art','ART','ART'),('game','GAME','GAME'),('campaigns','CAMPAIGNS','CAM<br>PAIGNS'),('play','PLAY','PLAY')]
@@ -19,7 +20,7 @@ def tx(key, default, html=False):
 def base_open(page, title, inner=False, desc='Independent creative portfolio by Shurui Ren.'):
     pre='../' if inner else ''
     active='project' if inner else page
-    return f'''<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#F7F8F5"><meta name="description" content="{escape(desc)}"><meta name="lm-audio-source" content="{pre}assets/audio/little-machine-lofi-original-tone-5min.mp3"><title>Shurui‘s Portfolio</title><link rel="icon" href="{pre}assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="{pre}assets/styles.css?v=play1"><script src="{pre}assets/i18n.js?v=play1" defer></script><script src="{pre}assets/main.js?v=paths2" defer></script></head><body id="top" class="page-{page}{' case-page' if inner else ''}" data-page="{page}"><a class="skip" href="#main-content" data-i18n="skip">Skip to content</a>{header(pre,active)}<main id="main-content">'''
+    return f'''<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#F7F8F5"><meta name="description" content="{escape(desc)}"><meta name="lm-audio-source" content="{pre}assets/audio/little-machine-lofi-original-tone-5min.mp3"><title>Shurui‘s Portfolio</title><link rel="icon" href="{pre}assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="{pre}assets/styles.css?v=editorial2"><script src="{pre}assets/i18n.js?v=editorial2" defer></script><script src="{pre}assets/main.js?v=paths2" defer></script></head><body id="top" class="page-{page}{' case-page' if inner else ''}" data-page="{page}"><a class="skip" href="#main-content" data-i18n="skip">Skip to content</a>{header(pre,active)}<main id="main-content">'''
 
 def header(pre, active):
     links=[('home','index.html','01','Home'),('work','work.html','02','Work'),('about','about.html','03','About'),('contact','contact.html','04','Contact')]
@@ -48,7 +49,7 @@ def project_card(p, inner=False, pdf_first=False):
     image = (f'<div class="project-art pdf-first-art"><img src="{pre}{escape(p["pdf_thumb"],quote=True)}" alt="{escape(p["title"]+" — complete first source PDF page",quote=True)}" loading="lazy" decoding="async" width="1728" height="1117"><span class="pdf-first-corner mono">01 / PDF</span></div>' if pdf_first else art_markup(p))
     label_key, label = 'portfolio_label', 'PORTFOLIO / DRAFT'
     if p.get('live_url'):
-        image = f'<div class="project-art play-preview"><img src="{pre}{p["cover"]}" alt="{escape(p["title"],quote=True)} — actual website screenshot" loading="lazy" decoding="async"><span class="pdf-first-corner mono">LIVE / WEB</span></div>'
+        image = editorial_cover(p, pre)
         label_key, label = 'play_label', 'LIVE / WEB PROJECT'
     return f'''<article class="project" data-category="{cat}"><a class="project-link" href="{pre}projects/{slug}.html" aria-label="View {escape(p['title'])} project" data-i18n-aria-label="project_{slug}_card_aria">{image}<div class="project-meta"><span class="mono">{p['number']} / <span data-i18n="project_{slug}_type">{escape(p['type'])}</span></span><small class="mono" data-i18n="{label_key}">{label}</small></div><h3 class="project-title"><span data-i18n="project_{slug}_display_title">{escape(p['title'])}</span><span class="arrow" aria-hidden="true">↗</span></h3><p class="project-description" data-i18n="project_{slug}_tagline">{escape(p['tagline'])}</p></a></article>'''
 
@@ -194,20 +195,7 @@ def detail(p,nxt):
     return s+finish(True)
 
 def play_detail(p):
-    prefix='project_'+p['slug']+'_'
-    def copy(key):
-        return f'<span data-i18n="{prefix}{key}">{escape(p[key])}</span>'
-    s=base_open('project',p['title'],True,p['tagline'])
-    s+=f'''<div class="page-wrap v19-case-wrap play-case"><div class="case-top"><a class="back-link" href="../work.html?category=play">← <span data-i18n="play_back">BACK TO PLAY</span></a><span class="mono">PROJECT {p['number']} / {len(PROJECTS):02d} · PLAY</span></div>
-    <section class="v19-case-lead"><div class="v19-case-intro"><div class="v18-case-hero"><span class="case-label mono" data-i18n="play_origin">REAL WEBSITE / VIBE CODING</span><h1 class="case-title" data-i18n="{prefix}display_title">{escape(p['title'])}</h1><p class="v17-case-tagline">{copy('tagline')}</p></div><div class="v18-case-summary"><span class="mono" data-i18n="v16_project_overview">PROJECT OVERVIEW</span><p>{copy('story')}</p></div></div>
-    <dl class="v17-case-facts"><div><dt data-i18n="case_discipline">DISCIPLINE</dt><dd>PLAY / VIBE CODING</dd></div><div><dt data-i18n="case_role">MY ROLE</dt><dd>Vibe coding</dd></div><div><dt data-i18n="play_stack">TECH STACK</dt><dd>{escape(p['tools'])}</dd></div><div><dt data-i18n="play_label">LIVE / WEB PROJECT</dt><dd>GitHub Pages</dd></div></dl>
-    <div class="play-actions"><a class="text-arrow-link" href="{p['live_url']}" target="_blank" rel="noopener noreferrer" data-i18n="play_live">OPEN LIVE PROJECT ↗</a><a class="text-arrow-link" href="{p['repo_url']}" target="_blank" rel="noopener noreferrer" data-i18n="play_source">VIEW GITHUB SOURCE ↗</a></div></section>
-    <section class="play-capture"><h2 data-i18n="play_screenshot">The real interface.</h2><figure><a href="../{p['cover']}" target="_blank" rel="noopener"><img src="../{p['cover']}" alt="{escape(p['title'],quote=True)} — actual website screenshot" decoding="async"></a><figcaption>{copy('caption')}</figcaption></figure></section>
-    <section class="v15-project-notes"><div class="v15-notes-intro"><span class="mono" data-i18n="play_notes">PROJECT NOTES / LIVE SITE & SOURCE</span><h2 data-i18n="v15_project_context">A closer look.</h2></div><div class="v15-notes-grid">'''
-    for i,(key,label_key,label) in enumerate([('lead','v15_question','THE QUESTION'),('approach','v15_approach','THE APPROACH'),('outcome','v15_documented',"WHAT'S DOCUMENTED")],1):
-        s+=f'<article><span class="mono">0{i} / <span data-i18n="{label_key}">{label}</span></span><p>{copy(key)}</p></article>'
-    s+='</div></section>'+recommendation_cards(p)+'<p class="case-warning" data-i18n="play_evidence">Based on the live websites and public repositories. Screenshots captured on 2026-11-06.</p></div>'
-    return s+finish(True)
+    return editorial_render(p,base_open,finish,recommendation_cards)
 
 def gallery_markup(p):
     slug=p['slug']; pages=p['gallery']; total=len(pages)

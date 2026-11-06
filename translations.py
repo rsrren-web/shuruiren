@@ -315,3 +315,7 @@ SCREEN_ZH={'design':'设计模式','art':'艺术模式','game':'游戏模式','c
 
 from play_projects import PLAY_ZH
 ZH.update(PLAY_ZH)
+
+from play_editorial import translations as editorial_translations
+ZH.update(editorial_translations())
+ZH.update({'ed_visit':'访问网站 ↗','ed_source':'查看源码 ↗','ed_overview':'项目概览','ed_interaction':'交互细节','ed_journey':'体验路径','ed_interface':'界面语言'})

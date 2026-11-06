@@ -1,7 +1,7 @@
 {
   "assets/audio/little-machine-lofi-original-tone-5min.mp3": "9c2a075ec657098f265ec2dc7bbf04bad54f1fadc92808fe54d570105c77801c",
   "assets/favicon.svg": "b55105525b11779e25bdfc96d1f20646ce4ef6bad9650e6917591989742ce7d1",
-  "assets/i18n.js": "f937f0680a9203d533fab20997725a985cc629ba3194be5d181e3d7301da2ea0",
+  "assets/i18n.js": "460fd668ab610d80c449cf92b0e274b49593e4ea7daf421f4b3e9b2e68852a5d",
   "assets/main.js": "83394b0249c95635f5c4b3e94b04254f1867fca3d3270c9b7d2264e98f213441",
   "assets/paper-grain.png": "36b0f480c56e2a53e6fadbbb8ba29e01a660ffe4e57e2caa301f8acabf0859b9",
   "assets/pencil-cursor.png": "aaeb5e6f0e0a5559d186eaedf9c2fcef7b835bd81d753587f42ad171f411a9af",
@@ -58,7 +58,8 @@
   "assets/portfolio/yellow-cover-cover.webp": "6ed34a1b568bed84a1b77daf84d9f37b6325700c95237315079e410dd5610d36",
   "assets/portfolio/yellow-cover-page-30.webp": "b9672c4b6266c625ef8cb4fe2a9fcad64be845259b63205231e2d7a9f05d2a45",
   "assets/portfolio/yellow-cover-pdf-first.webp": "dcad62681252a2ba0e8bcde472fd41efbdffb7668a3fff9da73ec6ff17834674",
-  "assets/styles.css": "03f08785fe175eb79a20ebf5a8672db2ca7d80fbb8dc9b1b9ce9aba5d7ae41ce",
+  "assets/styles.css": "907d59cc39b0a9b93528eb8c47c573dcd739be0679969d16266f5412ea8f01b1",
   "assets/play/period.jpg": "d15bf704134c77ea6e396f30b191b454653946e06896b86ae6675ec0529bcd36",
-  "assets/play/wenyi.jpg": "1bcbdcb18d37d11926a2064ad8d25635062dc26717eb03cc85606a8b11db69be"
+  "assets/play/wenyi.jpg": "1bcbdcb18d37d11926a2064ad8d25635062dc26717eb03cc85606a8b11db69be",
+  "assets/play/wenyi-library.jpg": "2c60559de48ada7572e751378fe1515130dfd7772bf09f1ca848682144fb05db"
 }
