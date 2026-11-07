@@ -147,6 +147,8 @@ for _project in PROJECTS:
 
 from play_projects import PLAY_PROJECTS
 PROJECTS.extend(PLAY_PROJECTS)
+from illustration_projects import ILLUSTRATIONS
+PROJECTS.extend(ILLUSTRATIONS)
 
 def art_markup(project, detail=False):
     """Real cover imagery extracted from supplied PDF, separate from the retained machine icon system."""

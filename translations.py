@@ -315,6 +315,8 @@ SCREEN_ZH={'design':'设计模式','art':'艺术模式','game':'游戏模式','c
 
 from play_projects import PLAY_ZH
 ZH.update(PLAY_ZH)
+from illustration_projects import ART_ZH
+ZH.update(ART_ZH)
 
 from play_editorial import translations as editorial_translations
 ZH.update(editorial_translations())

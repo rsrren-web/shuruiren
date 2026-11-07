@@ -9,6 +9,7 @@ import json
 from portfolio_data import PROJECTS, ICONS, art_markup, VISUAL_STORIES, PROJECT_TOOLS
 from translations import ZH, IDEAS_ZH, SCREEN_ZH
 from play_editorial import cover as editorial_cover, render as editorial_render
+from illustration_projects import render as illustration_render
 
 ROOT=Path(__file__).parent
 MODES=[('design','DESIGN','DESIGN'),('art','ART','ART'),('game','GAME','GAME'),('campaigns','CAMPAIGNS','CAM<br>PAIGNS'),('play','PLAY','PLAY')]
@@ -20,7 +21,7 @@ def tx(key, default, html=False):
 def base_open(page, title, inner=False, desc='Independent creative portfolio by Shurui Ren.'):
     pre='../' if inner else ''
     active='project' if inner else page
-    return f'''<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#F7F8F5"><meta name="description" content="{escape(desc)}"><meta name="lm-audio-source" content="{pre}assets/audio/little-machine-lofi-original-tone-5min.mp3"><title>Shurui‘s Portfolio</title><link rel="icon" href="{pre}assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="{pre}assets/styles.css?v=period3"><script src="{pre}assets/i18n.js?v=period3" defer></script><script src="{pre}assets/main.js?v=paths2" defer></script></head><body id="top" class="page-{page}{' case-page' if inner else ''}" data-page="{page}"><a class="skip" href="#main-content" data-i18n="skip">Skip to content</a>{header(pre,active)}<main id="main-content">'''
+    return f'''<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#F7F8F5"><meta name="description" content="{escape(desc)}"><meta name="lm-audio-source" content="{pre}assets/audio/little-machine-lofi-original-tone-5min.mp3"><title>Shurui‘s Portfolio</title><link rel="icon" href="{pre}assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="{pre}assets/styles.css?v=art14"><script src="{pre}assets/i18n.js?v=art14" defer></script><script src="{pre}assets/main.js?v=paths2" defer></script></head><body id="top" class="page-{page}{' case-page' if inner else ''}" data-page="{page}"><a class="skip" href="#main-content" data-i18n="skip">Skip to content</a>{header(pre,active)}<main id="main-content">'''
 
 def header(pre, active):
     links=[('home','index.html','01','Home'),('work','work.html','02','Work'),('about','about.html','03','About'),('contact','contact.html','04','Contact')]
@@ -48,6 +49,9 @@ def project_card(p, inner=False, pdf_first=False):
     slug=p['slug']
     image = (f'<div class="project-art pdf-first-art"><img src="{pre}{escape(p["pdf_thumb"],quote=True)}" alt="{escape(p["title"]+" — complete first source PDF page",quote=True)}" loading="lazy" decoding="async" width="1728" height="1117"><span class="pdf-first-corner mono">01 / PDF</span></div>' if pdf_first else art_markup(p))
     label_key, label = 'portfolio_label', 'PORTFOLIO / DRAFT'
+    if p.get('artwork'):
+        image = f'<div class="project-art artwork-preview"><img src="{pre}{p["cover"]}" alt="{escape(p["title"],quote=True)}" loading="lazy" width="2880" height="1646"></div>'
+        label_key, label = 'art_label', 'ILLUSTRATION'
     if p.get('live_url'):
         image = editorial_cover(p, pre)
         label_key, label = 'play_label', 'LIVE / WEB PROJECT'
@@ -69,7 +73,7 @@ def work():
     s=base_open('work','Work — A Little Machine')
     s+='''<section class="work-section standalone-work"><div class="page-wrap"><div class="section-topline"><div class="section-index"><span class="index-square">02</span><span class="mono" data-i18n="work_kicker">THE PORTFOLIO / FIVE DISCIPLINES</span></div><span class="mono" data-i18n="demo_warning">REAL PROJECTS / EDITORIAL REVIEW</span></div><div class="work-intro"><h1 data-i18n-html="work_heading">Things made<br>along <span class="blue">the way.</span></h1><div class="work-summary"><span class="mono" data-i18n="discipline_summary">DESIGN / ART / GAME / CAMPAIGNS / PLAY</span><p data-i18n="work_description">Browse by discipline: portfolio case studies alongside live Vibe Coding projects.</p></div></div><div class="filters" role="group" aria-label="Filter projects by discipline" data-i18n-aria-label="a11y_filters">'''
     s+=''.join(f'<button class="filter" type="button" data-filter="{cat}" aria-pressed="{str(i==0).lower()}" data-i18n="filter_{cat}">{label}</button>' for i,(cat,label) in enumerate([('all','All work'),('design','Design'),('art','Art'),('game','Game'),('campaigns','Campaigns'),('play','Play')]))
-    s+='''<span class="filter-count mono" id="filter-count" aria-live="polite">SHOWING 13 / 13</span></div><div class="work-grid" id="project-grid">'''+''.join(project_card(p,pdf_first=True) for p in PROJECTS)+'''</div><div class="filter-empty" id="filter-empty" hidden><span class="empty-star" aria-hidden="true">✳</span><h2 data-i18n="empty_heading">This channel is warming up.</h2><p data-i18n="empty_body">No project in this category has been documented in the supplied portfolio yet.</p><button type="button" class="empty-reset" data-reset-filter data-i18n="empty_reset">VIEW ALL WORK ↗</button></div><div class="work-bottom-note mono" data-i18n="work_bottom_note">PORTFOLIO CASE STUDIES & LIVE WEB PROJECTS / SOURCES AND LINKS IN EACH PROJECT.</div></div></section>'''
+    s+='''<span class="filter-count mono" id="filter-count" aria-live="polite">SHOWING 14 / 14</span></div><div class="work-grid" id="project-grid">'''+''.join(project_card(p,pdf_first=True) for p in PROJECTS)+'''</div><div class="filter-empty" id="filter-empty" hidden><span class="empty-star" aria-hidden="true">✳</span><h2 data-i18n="empty_heading">This channel is warming up.</h2><p data-i18n="empty_body">No project in this category has been documented in the supplied portfolio yet.</p><button type="button" class="empty-reset" data-reset-filter data-i18n="empty_reset">VIEW ALL WORK ↗</button></div><div class="work-bottom-note mono" data-i18n="work_bottom_note">PORTFOLIO CASE STUDIES & LIVE WEB PROJECTS / SOURCES AND LINKS IN EACH PROJECT.</div></div></section>'''
     return s+finish()
 
 def about():
@@ -182,6 +186,8 @@ def tools_markup(p):
     return escape(original)
 
 def detail(p,nxt):
+    if p.get('artwork'):
+        return illustration_render(p,base_open,finish,recommendation_cards)
     if p.get('live_url'):
         return play_detail(p)
     slug=p['slug']; prefix='project_'+slug+'_'; idx=p['number']
