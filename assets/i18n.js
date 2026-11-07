@@ -504,7 +504,8 @@ window.LM_TRANSLATIONS = {
     "ed_overview": "项目概览",
     "ed_interaction": "交互细节",
     "ed_journey": "体验路径",
-    "ed_interface": "界面语言"
+    "ed_interface": "界面语言",
+    "footer_copyright_notice": "作品均已注册版权，侵权必究。"
   },
   "ideasZh": {
     "design": [

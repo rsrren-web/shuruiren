@@ -321,3 +321,5 @@ ZH.update(ART_ZH)
 from play_editorial import translations as editorial_translations
 ZH.update(editorial_translations())
 ZH.update({'ed_visit':'访问网站 ↗','ed_source':'查看源码 ↗','ed_overview':'项目概览','ed_interaction':'交互细节','ed_journey':'体验路径','ed_interface':'界面语言'})
+
+ZH["footer_copyright_notice"] = "作品均已注册版权，侵权必究。"
