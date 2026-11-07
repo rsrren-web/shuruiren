@@ -697,6 +697,17 @@ function setupContinuousNavigation() {
   });
 }
 
+// Discourage direct saving of this illustration without blocking normal navigation.
+// This is a UI deterrent, not access control for publicly delivered image bytes.
+document.addEventListener('contextmenu', event => {
+  if (event.target.closest('[data-protected-art], .artwork-preview') ||
+      (event.target.tagName === 'IMG' && event.target.getAttribute('src')?.includes('/art/live-in-the-present.png'))) event.preventDefault();
+});
+document.addEventListener('dragstart', event => {
+  if (event.target.closest('[data-protected-art], .artwork-preview') ||
+      (event.target.tagName === 'IMG' && event.target.getAttribute('src')?.includes('/art/live-in-the-present.png'))) event.preventDefault();
+});
+
 function initLittleMachine() {
   if (!document.body.dataset.englishTitle) document.body.dataset.englishTitle=document.title;
   applyIdentity();

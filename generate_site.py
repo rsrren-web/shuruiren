@@ -21,7 +21,7 @@ def tx(key, default, html=False):
 def base_open(page, title, inner=False, desc='Independent creative portfolio by Shurui Ren.'):
     pre='../' if inner else ''
     active='project' if inner else page
-    return f'''<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#F7F8F5"><meta name="description" content="{escape(desc)}"><meta name="lm-audio-source" content="{pre}assets/audio/little-machine-lofi-original-tone-5min.mp3"><title>Shurui‘s Portfolio</title><link rel="icon" href="{pre}assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="{pre}assets/styles.css?v=art14"><script src="{pre}assets/i18n.js?v=art14" defer></script><script src="{pre}assets/main.js?v=paths2" defer></script></head><body id="top" class="page-{page}{' case-page' if inner else ''}" data-page="{page}"><a class="skip" href="#main-content" data-i18n="skip">Skip to content</a>{header(pre,active)}<main id="main-content">'''
+    return f'''<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#F7F8F5"><meta name="description" content="{escape(desc)}"><meta name="lm-audio-source" content="{pre}assets/audio/little-machine-lofi-original-tone-5min.mp3"><title>Shurui‘s Portfolio</title><link rel="icon" href="{pre}assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="{pre}assets/styles.css?v=copyright1"><script src="{pre}assets/i18n.js?v=copyright1" defer></script><script src="{pre}assets/main.js?v=copyright1" defer></script></head><body id="top" class="page-{page}{' case-page' if inner else ''}" data-page="{page}"><a class="skip" href="#main-content" data-i18n="skip">Skip to content</a>{header(pre,active)}<main id="main-content">'''
 
 def header(pre, active):
     links=[('home','index.html','01','Home'),('work','work.html','02','Work'),('about','about.html','03','About'),('contact','contact.html','04','Contact')]
@@ -32,7 +32,7 @@ def header(pre, active):
 
 def footer(inner=False):
     pre='../' if inner else ''
-    return f'''<footer class="global-footer"><div class="page-wrap global-footer-inner"><span class="mono">© <span data-current-year>2026</span> <span data-footer-name>SH<span class="name-u">U</span>R<span class="name-u">U</span>I <span class="name-ren">REN</span></span> <span data-i18n="footer_made">/ BUILT WITH CURIOSITY</span></span><div class="footer-links"><a href="{pre}work.html" data-i18n="nav_work">Work</a><a href="{pre}about.html" data-i18n="nav_about">About</a><a href="{pre}contact.html" data-i18n="nav_contact">Contact</a><a href="#top" data-i18n="back_top">TOP ↑</a></div></div></footer>'''
+    return f'''<footer class="global-footer"><div class="page-wrap global-footer-inner"><span class="mono">© <span data-current-year>2026</span> <span data-footer-name>SH<span class="name-u">U</span>R<span class="name-u">U</span>I <span class="name-ren">REN</span></span> <span data-i18n="footer_made">/ BUILT WITH CURIOSITY</span></span><div class="footer-links"><a href="{pre}work.html" data-i18n="nav_work">Work</a><a href="{pre}about.html" data-i18n="nav_about">About</a><a href="{pre}contact.html" data-i18n="nav_contact">Contact</a><a href="#top" data-i18n="back_top">TOP ↑</a></div></div><p class="page-wrap footer-copyright-notice">作品均已注册版权，侵权必究。</p></footer>'''
 
 def finish(inner=False):return '</main>'+footer(inner)+'</body></html>'
 
