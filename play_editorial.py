@@ -14,6 +14,16 @@ COPY = {
   ('screen','Room for the everyday.','给每天的感受，留一个位置。'),
   ('screen_body','The daily form separates state, activity and social life, sleep and digestion, pain and physical sensations into navigable groups.','每日表单将状态、活动社交、睡眠排便、疼痛和体感拆成可导航的分组。'),
   ('end','Make space for a daily check-in.','留一点时间，关心自己。'),
+  ('features','A day is more than a single feeling.','一天的状态，不止一种感受。'),
+  ('features_body','Movement, connection, rest and physical sensations each have their own place. Explore the daily record through four complementary views.','运动、社交、休息与身体感受，各有自己的位置。从四个不同的角度，记录一天的生活。'),
+  ('activity_title','Movement, in your own terms.','用自己的方式，记录运动。'),
+  ('activity_body','Choose from gym sessions, stretching, Baduanjin, tennis and hiking. Multiple selections let different activities coexist, while a separate rating captures the overall amount of movement.','健身房、拉伸、八段锦、网球和徒步可以多选，再用独立评分记录全天运动量，让不同活动都能被容纳。'),
+  ('social_title','How did connection feel?','社交之后，你的感受如何？'),
+  ('social_body','Work, leisure and everyday interactions sit alongside social intensity and the feeling afterwards: restorative, neutral or draining. Context matters as much as quantity.','工作、娱乐与日常场景，搭配社交强度和社交后的感受：恢复、没有明显影响，或消耗。记录的不只是数量，还有体验。'),
+  ('sleep_title','Give rest a little attention.','也给休息，一点关注。'),
+  ('sleep_body','Sleep quality and bedtime are recorded separately. Quick choices for sleep patterns keep the form approachable without requiring an exact sleep schedule.','将睡眠质量与入睡时间分别记录，用快捷选项描述睡眠表现，不要求填写精确的作息时间。'),
+  ('pain_title','Make physical sensations specific.','把身体的感受，说得具体一点。'),
+  ('pain_body','Illustrated body-area choices make it possible to record more than one location. Pain intensity, characteristics and responses provide further detail in the same flow.','用图示选择一个或多个疼痛部位，再在同一流程中记录程度、性质与反应，让身体感受得到更具体的表达。'),
  ],
  'wenyi': [
   ('hero','An old text. A new encounter.','古老的文字，新的相遇。'),
@@ -44,7 +54,7 @@ def cover(p,pre=''):
 
 def render(p,base_open,finish,recommendation_cards):
     slug=p['slug']; t=lambda key:text(slug,key)
-    links=f'<div class="ed-links"><a href="{p["live_url"]}" target="_blank" rel="noopener noreferrer" data-i18n="ed_visit">VISIT WEBSITE ↗</a><a href="{p["repo_url"]}" target="_blank" rel="noopener noreferrer" data-i18n="ed_source">SOURCE CODE ↗</a></div>'
+    links=f'<div class="ed-links"><a href="{p["live_url"]}" target="_blank" rel="noopener noreferrer" data-i18n="ed_visit">VISIT WEBSITE ↗</a></div>'
     s=base_open('project',p['title'],True,p['tagline'])
     s+=f'''<article class="page-wrap ed-case ed-case-{slug}"><div class="case-top"><a class="back-link" href="../work.html?category=play">← <span data-i18n="play_back">BACK TO PLAY</span></a><span class="mono">{p['number']} / WEB EXPERIENCE</span></div>
     <header class="ed-title"><div><span class="mono">PLAY — VIBE CODING</span><h1 data-i18n="project_{slug}_display_title">{escape(p['title'])}</h1></div><div><p>{t('hero')}</p>{links}</div></header>
@@ -55,5 +65,13 @@ def render(p,base_open,finish,recommendation_cards):
     for i in range(1,4):
         s+=f'<article><span class="ed-step mono">0{i} ↗</span><h3>{t("flow"+str(i))}</h3><p>{t("flowbody"+str(i))}</p></article>'
     s+=f'''</div></section><section class="ed-screen"><div><span class="mono">04 / <span data-i18n="ed_interface">INTERFACE</span></span><h2>{t('screen')}</h2><p>{t('screen_body')}</p></div><a href="../assets/play/{slug}.jpg" target="_blank" rel="noopener"><img src="../assets/play/{slug}.jpg" alt="{escape(p['title'])} interface" loading="lazy"></a></section>
+    {period_features() if slug=='period' else ''}
     <section class="ed-end"><span class="mono">EXPLORE THE PROJECT</span><h2>{t('end')}</h2>{links}</section>{recommendation_cards(p)}</article>'''
     return s+finish(True)
+
+def period_features():
+    t=lambda key:text('period',key)
+    s=f'<section class="period-features"><header><span class="mono">05 / DAILY LIFE</span><h2>{t("features")}</h2><p>{t("features_body")}</p></header><div class="period-feature-grid">'
+    for i,key in enumerate(('activity','social','sleep','pain'),1):
+        s+=f'''<article class="period-feature-card period-feature-{key}"><div class="period-feature-copy"><span class="mono">0{i} / {key.upper()}</span><h3>{t(key+'_title')}</h3><p>{t(key+'_body')}</p></div><a class="period-phone" href="../assets/play/period-{key}.jpg" target="_blank" rel="noopener" aria-label="View {key} interface"><img src="../assets/play/period-{key}.jpg" alt="Period — {key} recording interface" loading="lazy" width="390" height="844"></a></article>'''
+    return s+'</div></section>'
